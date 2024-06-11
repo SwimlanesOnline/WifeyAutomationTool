@@ -69,7 +69,7 @@ Actions tab:
   - It is OK to trade manually or with other programs on symbols that are **not part** of the Wifey Alpha strategy that you want to automate
 - The script can not pick a specific MetaTrader account. It will always connect to the last account that the MetaTrader 5 client was connected to
 - The script does not support Meta Trader 4 or any other trading interface (IBKR is planned)
-- Your email password will sit in the python script unencrypted. Make sure nobody who is not authorized can gain access to your computer.
+- Your email password will be visible in the python script unencrypted. Make sure nobody who is not authorized can gain access to your computer.
 
 # ToDo
 These are the features I want to work on next. No promises on timeline
