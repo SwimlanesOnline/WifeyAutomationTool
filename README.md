@@ -79,4 +79,4 @@ These are the features I want to work on next. No promises on timeline
   - Encapsulate API from trading logic
 - Show post rebalance allocations and send email if it doesn't match Wifey Alpha email allos
 
-That's it. Now you know everything to run this Wifey Alpha automation. If you are a software engineer and read my terrible code, please be easy on me. Professionally I'm just a mere Product Manager, not a SE.
+That's it. Now you know everything to run this Wifey Alpha automation. If you are a software engineer and read my terrible code, please be easy on me. Professionally I'm just a mere Product Manager, not a SE. If the code drives you crazy, fix it and send a merge request! :)
