@@ -25,7 +25,10 @@ The script will always connect to the last MetaTrader account that was used. If 
 
 **If you want to do a test run first, make sure you connect to a Demo/Paper account before running Wifey Automation. It is highly recommended to do this for the first time, to make sure everything works as expected**
 
-You can either run the program manually when the allocation emails get sent (this kind of defeats the purpose of automation though), or use the Windows Task Scheduler to run it automatically.
+You can run the program manually, which is useful for testing the initial setup. You might have to send yourself an email formatted like the Wifey Alpha emails and change the "sender" variable in trader.py to match your own email address, if UTC time is already on the next day after the last allocation email delivery. Otherwise the script will just sit there and wait for the next allocation emails to be sent at 19:53 UTC. After initial setup testing is complete, make sure to set the sender variable back to noreply@wifeyalpha.com again.
+
+Once everything is figured out and tested, you can use the Windows Task Scheduler to run it automatically.
+
 ## Manual execution
 - Open a command shell (Windows button + `cmd` + Enter)
 - Type `py C:\your\path\to\trade.py` and hit Enter
