@@ -21,17 +21,19 @@ Automate execution of trades based on [Wifey Alpha](https://wifeyalpha.com/) all
 You are now set as far as installation and configuration of required packages goes.
 
 # Running Wifey Automation Tool
-The script will always connect to the last MetaTrader account that was used. If you use multiple MT5 accounts, make sure you connect to the one you want to use for Wifey Automation before running Wifey Automation.
+The script will always connect to the last MetaTrader account that was used. If you use multiple MT5 accounts, make sure you connect to the one you want to use for Wifey Alpha before running Wifey Automation Tool.
 
-**If you want to do a test run first, make sure you connect to a Demo/Paper account before running Wifey Automation. It is highly recommended to do this for the first time, to make sure everything works as expected**
+**If you want to do a test run first, make sure you connect to a Demo/Paper account before running Wifey Automation Tool. It is highly recommended to do this for the first time, to make sure everything works as expected**
 
-You can run the program manually, which is useful for testing the initial setup. You might have to send yourself an email formatted like the Wifey Alpha emails and change the "sender" variable in trader.py to match your own email address, if UTC time is already on the next day after the last allocation email delivery. Otherwise the script will just sit there and wait for the next allocation emails to be sent at 19:53 UTC. After initial setup testing is complete, make sure to set the sender variable back to noreply@wifeyalpha.com again.
-
-Once everything is figured out and tested, you can use the Windows Task Scheduler to run it automatically.
+You can run the program manually, which is useful for testing the initial setup. Once everything is figured out and tested, you can use the Windows Task Scheduler to run it automatically.
 
 ## Manual execution
 - Open a command shell (Windows button + `cmd` + Enter)
 - Type `py C:\your\path\to\trade.py` and hit Enter
+
+**Note for testing initial setups:**
+
+The tool will check if an allocation email has been sent on the same day (based on UTC timezone) of when the script is ran. If there is no email yet (e.g. you test before 19:53 UTC), the tool will just wait for new emails to arrive and not trade. In order to be able to test, you might have to send yourself an email formatted like the Wifey Alpha emails and change the "sender" variable in trader.py to match your own email address. Otherwise the script will just sit there and wait for the next allocation emails to be sent at 19:53 UTC. After initial setup testing is complete, make sure to set the sender variable back to noreply@wifeyalpha.com again, so that it picks up the proper emails.
 
 ## Automatic execution
 - Open the Windows Task Scheduler (Windows button + `taskschd.msc` + Enter)
@@ -80,4 +82,4 @@ These are the features I want to work on next. No promises on timeline
   - Encapsulate API from trading logic
 - Show post rebalance allocations and send email if it doesn't match Wifey Alpha email allos
 
-That's it. Now you know everything to run this Wifey Alpha automation. If you are a software engineer and read my terrible code, please be easy on me. Professionally I'm just a mere Product Manager, not a SE. If the code drives you crazy, fix it and send a merge request! :)
+That's it. Now you know everything to run this Wifey Automation Tool. If you are a software engineer and read my terrible code, please be easy on me. Professionally I'm just a mere Product Manager, not a SE. If the code drives you crazy, fix it and send a merge request! :)
