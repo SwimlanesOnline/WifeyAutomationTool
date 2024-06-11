@@ -35,6 +35,15 @@ You can run the program manually, which is useful for testing the initial setup.
 
 The tool will check if an allocation email has been sent on the same day (based on UTC timezone) of when the script is ran. If there is no email yet (e.g. you test before 19:53 UTC), the tool will just wait for new emails to arrive and not trade. In order to be able to test, you might have to send yourself an email formatted like the Wifey Alpha emails and change the "sender" variable in trader.py to match your own email address. Otherwise the script will just sit there and wait for the next allocation emails to be sent at 19:53 UTC. After initial setup testing is complete, make sure to set the sender variable back to noreply@wifeyalpha.com again, so that it picks up the proper emails.
 
+The allocation emails are sent in both formats in one email - raw text and HTML formatted. Your manual email client will usually show the HTML variant. Wifey Automation Tool uses the raw text variant for its trading. The two variants have a small difference: The raw text variant adds a colon after the symbol, the HTML variant does not. If you don't know how to find the raw text variant of one of the previous emails, you can use the following sample mail and send it to yourself as **unformatted, raw text email** (subject is identical to the first line of the email. The date mentioned in the email text is irrelevant as it is ignored by the tool):
+
+    Daily Long/Short
+    Last Computation Date: 2024-06-11
+    Last Allocation Date: 2024-06-11
+    SPY: 100.0%
+
+You can change the 100% to any other value from -100.0% to 100.0%, send it to yourself and run Wifey Automation Tool again and it will adjust your positions to match the allocation. As stated previously - do this testing on a Demo/Paper account! Do not use a live account for testing like this. You might incur fees and potential trading losses!
+
 ## Automatic execution
 - Open the Windows Task Scheduler (Windows button + `taskschd.msc` + Enter)
 - On the right side, click "Create Basic Task"
