@@ -50,11 +50,12 @@ You can now find your new scheduled task in the long list of other scheduled tas
 
 Here are screenshots of my configured scheduled task. My Windows is in German unfortunately, but the UI layout is the same. You can figure out which field is which on your system. If anyone wants to contribute English interface screenshots, be my guest :)
 
-Trigger tab:
+**Trigger tab:**
 
 ![image](https://github.com/SwimlanesOnline/WifeyAutomation/assets/226377/feaba88a-2d5f-4f3b-b3e3-65ad4a246e1f)
+(End after 30 minutes is optional. The script will quit automatically on its own after 30 minutes)
 
-Actions tab:
+**Actions tab:**
 
 ![image](https://github.com/SwimlanesOnline/WifeyAutomation/assets/226377/79e13049-de15-4795-afa3-7ba139787a89)
 
