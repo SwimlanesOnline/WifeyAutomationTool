@@ -1,4 +1,4 @@
-# WifeyAutomation
+# WifeyAutomationTool
 Automate execution of trades based on [Wifey Alpha](https://wifeyalpha.com/) allocation emails
 
 # Requirements
