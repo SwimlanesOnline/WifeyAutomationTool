@@ -1,5 +1,5 @@
 # Wifey Automation Tool
-![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) ![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg) ![forthebadge](https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg) ![forthebadge](https://forthebadge.com/images/badges/code-sucks-it-works.svg)
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) ![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg) ![forthebadge](https://forthebadge.com/images/badges/code-sucks-it-works.svg)
 
 Automate execution of trades based on [Wifey Alpha](https://wifeyalpha.com/) allocation emails
 
