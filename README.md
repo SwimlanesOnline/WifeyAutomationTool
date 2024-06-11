@@ -3,7 +3,7 @@ Automate execution of trades based on [Wifey Alpha](https://wifeyalpha.com/) all
 
 # Requirements
 - Windows (no clue what the minimum version is - I tested on Windows 10)
-- An updated MetaTrader 5 client
+- An updated MetaTrader 5 client from your broker
 - Python 3.11 or higher
 - The latest MetaTrader5 Python package
 
