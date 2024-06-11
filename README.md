@@ -1,4 +1,4 @@
-# WifeyAutomationTool
+# Wifey Automation Tool
 Automate execution of trades based on [Wifey Alpha](https://wifeyalpha.com/) allocation emails
 
 # Requirements
@@ -20,7 +20,7 @@ Automate execution of trades based on [Wifey Alpha](https://wifeyalpha.com/) all
 
 You are now set as far as installation and configuration of required packages goes.
 
-# Running Wifey Automation
+# Running Wifey Automation Tool
 The script will always connect to the last MetaTrader account that was used. If you use multiple MT5 accounts, make sure you connect to the one you want to use for Wifey Automation before running Wifey Automation.
 
 **If you want to do a test run first, make sure you connect to a Demo/Paper account before running Wifey Automation. It is highly recommended to do this for the first time, to make sure everything works as expected**
