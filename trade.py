@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""
-Execute Wifey Alpha strategies by pulling allocations
-from emails via IMAP and execute trades via MetaTrader 5.
-Program written by Sascha Jüngling <sjuengling@gmail.com>
-"""
+###
+# Execute Wifey Alpha strategies by pulling allocations
+# from emails via IMAP and execute trades via MetaTrader 5.
+# Program written by Sascha Jüngling <sjuengling@gmail.com>
+###
 
 # Make your edits in between the quotation marks "edit here" below (except for the investment amount, which has none).
 # Do not remove the hash # signs in front of the lines.
@@ -24,7 +24,8 @@ emailPassword = "your password goes here"
 # "Long/Short Equity Daily Indicator" via emails)
 strategy = "Daily Long/Short" 
 
-# This is the sender email address, so it won't trigger on random other people's emails with the same subject line. 
+# This is the sender email address, so it won't trigger on random other people's emails with the same subject line. This is not hardened
+# for security - people can easily fake sender addresses. Don't tell anybody which email you use to receive your allocations.
 # Usually it can stay unchanged.
 sender = "noreply@wifeyalpha.com"
 
@@ -44,17 +45,16 @@ symbolMap = {
     "SPY": "US500", 
 }
 
-''' Example of running a strategy with multiple possible allocation symbols:
-symbolMap = {
-    "SPY": "US500", 
-    "BIL": "BIL.ETF", 
-    "IEF": "IEF.ETF", 
-    "GSG": "GSG.ETF", 
-    "VEA": "EFA.ETF", 
-    "GLD": "GLD.ETF", 
-    "AGG": "AGG.ETF",
-}
-'''
+# Example of running a strategy with multiple possible allocation symbols:
+# symbolMap = {
+#     "SPY": "US500", 
+#     "BIL": "BIL.ETF", 
+#     "IEF": "IEF.ETF", 
+#     "GSG": "GSG.ETF", 
+#     "VEA": "EFA.ETF", 
+#     "GLD": "GLD.ETF", 
+#     "AGG": "AGG.ETF",
+# }
 
 ######################################
 ### No more change past this point ###
@@ -221,6 +221,11 @@ def sendRequest(request):
     elif request["type"] == mt.ORDER_TYPE_SELL:
         logging.info("position closed, {}".format(result))
 
+def truncate_float(float_number, reference):
+    
+    multiplier = 10 ** decimal_places
+    return int(float_number * multiplier) / multiplier
+
 def UpdateAllosMT5(strategyTarget, investmentAmount):
     # Get your symbols for the entire strategy in a comma separated list
     group_input = ','.join(strategyTarget.keys())
@@ -260,7 +265,8 @@ def UpdateAllosMT5(strategyTarget, investmentAmount):
                 continue
             # SELL positions that get reduced
             elif abs(strategyTarget[s.name].targetAllo) - strategyTarget[s.name].position_value < 0:
-                lot = ( strategyTarget[s.name].position_value - abs(strategyTarget[s.name].targetAllo) ) / s.bid / s.trade_contract_size * (1/s.volume_step) // 1 * s.volume_step
+                lot = math.floor(( strategyTarget[s.name].position_value - abs(strategyTarget[s.name].targetAllo) ) / s.bid / s.trade_contract_size / s.volume_step ) * s.volume_step
+                # math.floor(23000 / 3450 / 1 / .01 )* .01 
                 logging.debug(lot)
                 if lot < s.volume_min:
                     logging.info("closing difference smaller than min. lot size, not triggering a transaction for %s", s.name)
@@ -280,8 +286,8 @@ def UpdateAllosMT5(strategyTarget, investmentAmount):
     if len(strategyTarget) > 0: 
         for s in strategyTarget:
             # Is the allocation difference big enough to do something?
-            lot = (abs(strategyTarget[s].targetAllo) - strategyTarget[s].position_value) / strategyTarget[s].symbol.bid / strategyTarget[s].symbol.trade_contract_size * \
-                (1/strategyTarget[s].symbol.volume_step) // 1 * strategyTarget[s].symbol.volume_step 
+            lot = math.floor((abs(strategyTarget[s].targetAllo) - strategyTarget[s].position_value) / strategyTarget[s].symbol.bid / strategyTarget[s].symbol.trade_contract_size \
+                / strategyTarget[s].symbol.volume_step) * strategyTarget[s].symbol.volume_step 
                         #  len(str(strategyTarget[s].symbol.volume_step).split('.')[1])
             if abs(lot) < strategyTarget[s].symbol.volume_min:
                     logging.debug(lot)
@@ -289,8 +295,8 @@ def UpdateAllosMT5(strategyTarget, investmentAmount):
                     continue
             
             # We're doing something, so drop existing pos (if applicable) and rebuy at new size
-            lot = abs(strategyTarget[s].targetAllo) / strategyTarget[s].symbol.bid / strategyTarget[s].symbol.trade_contract_size* \
-                (1/strategyTarget[s].symbol.volume_step) // 1 * strategyTarget[s].symbol.volume_step
+            lot = math.floor(abs(strategyTarget[s].targetAllo) / strategyTarget[s].symbol.bid / strategyTarget[s].symbol.trade_contract_size \
+                / strategyTarget[s].symbol.volume_step) * strategyTarget[s].symbol.volume_step
             # Close existing position before expanding
             if strategyTarget[s].position is not None:
                 sendRequest(prepareRequest(s, strategyTarget[s].position.volume, "BUY" if strategyTarget[s].position.type == 1 else "SELL", strategyTarget[s].position.ticket, strategyTarget[s].symbol.filling_mode))
