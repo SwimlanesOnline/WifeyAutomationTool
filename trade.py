@@ -60,7 +60,7 @@ symbolMap = {
 ### No more change past this point ###
 ######################################
 
-import threading, _thread, os, time, re, sys, signal, logging
+import threading, _thread, os, time, re, sys, signal, logging, math
 from datetime import datetime
 from imaplib import IMAP4_SSL
 from collections import namedtuple
@@ -220,11 +220,6 @@ def sendRequest(request):
         logging.info("   opened position with POSITION_TICKET={}".format(result.order))
     elif request["type"] == mt.ORDER_TYPE_SELL:
         logging.info("position closed, {}".format(result))
-
-def truncate_float(float_number, reference):
-    
-    multiplier = 10 ** decimal_places
-    return int(float_number * multiplier) / multiplier
 
 def UpdateAllosMT5(strategyTarget, investmentAmount):
     # Get your symbols for the entire strategy in a comma separated list
