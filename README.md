@@ -17,7 +17,7 @@ Automate execution of trades based on [Wifey Alpha](https://wifeyalpha.com/) all
 - Type `py --version` to see if you get a positive result, informing you about the installed python version
   - If you do not get a response like `Python 3.11.9`, your Python installation did not go right and you might need to try again
 - Type `py -m pip install MetaTrader5 numpy` to install the python connector for MetaTrader 5, numpy and their dependencies
-- Download [the latest release](https://github.com/SwimlanesOnline/WifeyAutomationTool/releases) from this repository and copy it to a folder of your choice
+- Download [the latest release](https://github.com/SwimlanesOnline/WifeyAutomationTool/releases) from this repository and extract it to a folder of your choice
 - Open trader.py in a text editor (e.g. notepad) and go through the first 60 lines or so, configuring your email access, strategy to trade, investment capital and define the symbols traded in the strategy
 
 You are now set as far as installation and configuration of required packages goes.
